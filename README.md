@@ -41,9 +41,14 @@ From original fork, following was implemented:
 From within the root directory:
 
 ```
-npm install -g bower
 npm install
-bower install
+npm run start-webpack
+```
+
+Then, in a new terminal window: 
+
+```
+npm start
 ```
 
 ## Roadmap
