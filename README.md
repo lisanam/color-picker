@@ -2,6 +2,8 @@
 
 Forked from [Witty-Willow](https://github.com/witty-willow/color-picker). 
 
+<img src="./examples/main.png">
+
 ## Table of Contents
 
 1. [Team](#team)
