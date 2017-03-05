@@ -44,10 +44,16 @@ From within the root directory:
 
 ```
 npm install
-npm run start-webpack
+npm run webpack
 ```
 
-Then, in a new terminal window: 
+Then, start and initialize the database:
+
+```
+
+```
+
+Finally, start the server in a new terminal window: 
 
 ```
 npm start

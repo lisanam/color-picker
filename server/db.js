@@ -1,5 +1,13 @@
+require('dotenv').config()
+
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/colorPicker');
+mongoose.Promise = global.Promise;
+
+var host = process.env.DB_1_PORT_27017_TCP_ADDR;
+var port = process.env.DB_1_PORT_27017_TCP_PORT;
+
+var dbUrl = host ? `mongodb://${host}:${port}/colorPicker` : 'mongodb://localhost/colorPicker'
+mongoose.connect(dbUrl);
 
 colorFamilySchema = mongoose.Schema({
   name: String,
