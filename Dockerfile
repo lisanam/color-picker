@@ -7,7 +7,9 @@ RUN sudo apt install nodejs-legacy
 RUN sudo apt install npm
 
 #Web Server
-FROM node:4-onbuild
+# FROM node:4-onbuild
+FROM nginx:alpine
+COPY client/index.html /usr/share/nginx/html
 MAINTAINER Lisa Nam <lsyn2016@gmail.com>
 
 # Create app directory
