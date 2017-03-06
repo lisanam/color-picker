@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon server/app.js",
-    "webpack": "webpack --config webpack.config.js --progress --colors"
+    "webpack": "webpack --config webpack.config.js --progress --colors",
+    "docker" : "sudo apt install docker-compose && sudo docker-compose up -d"
   },
   "repository": {
     "type": "git",

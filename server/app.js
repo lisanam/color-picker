@@ -90,5 +90,5 @@ app.get('/api/copycount', controller.getCopyCount);
 app.post('/api/copycount', controller.increaseCount);
 
 app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
+  console.log('Colorize is up and running!')
 });

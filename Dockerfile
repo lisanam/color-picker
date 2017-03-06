@@ -1,8 +1,13 @@
 #Database
 
 
+#Set up ubuntu
+RUN sudo apt-get update
+RUN sudo apt install nodejs-legacy
+RUN sudo apt install npm
+
 #Web Server
-FROM node:boron
+FROM node:4-onbuild
 MAINTAINER Lisa Nam <lsyn2016@gmail.com>
 
 # Create app directory
