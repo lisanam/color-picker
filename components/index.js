@@ -435,9 +435,9 @@ class App extends React.Component {
       if(that.state.matchGame) {
         return <MatchGame/>
       } else if (that.state.hiddenUnlocked) {
-        return <MiniGame currentFamily={that.state.currentFamily} matchGame={that.playMatchGame.bind(that)}/>
-      } else {
         return <ColorNameMatchGame unlock={that.unlock.bind(that)}/>
+      } else {
+        return <MiniGame currentFamily={that.state.currentFamily} matchGame={that.playMatchGame.bind(that)}/>
       }
     }
 

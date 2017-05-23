@@ -100,7 +100,9 @@ class ColorInfoView extends React.Component {
       <Row style={styles.row}>
         <Col xs={3}>
           <Tooltip style={styles.toolTip} placement="top" className="in" id="tooltip">{this.state.toolTipText} Copied!</Tooltip>
-          <div style={styles.preview}></div>
+          <CopyToClipboard onCopy={this.onCopyHandler.bind(this)} text={this.props.color.hex}>
+            <div style={styles.preview}></div>
+          </CopyToClipboard>
         </Col>
         <Col xs={6}>
           <span>{this.props.color.name}</span>
