@@ -14,26 +14,28 @@ class ColorFamilyView extends React.Component {
     return (
       <div className="content-wrap">
         {this.props.colorFamilies.map(function(obj, index) {
-        return (
-          <Grid key={index}>
-            <Row>
-              <ReactCSSTransitionGroup
-                transitionName='fade'
-                transitionAppear={true}
-                transitionAppearTimeout={3000}
-                transitionEnter={false}
-                transitionLeave={false}
-                key={index}>
-                <Col xs={12} md={12}>
-                  <h5>{obj.name}</h5>
-                </Col>
-                <Col xs={12} md={12}>
-                  <ColorFamily setCurrentFamily={this.props.setCurrentFamily} toggleSidebarOn={this.props.toggleSidebarOn} colorFamily={obj} />
-                </Col>
-              </ReactCSSTransitionGroup>
-            </Row>
-          </Grid>
-          )
+          if(obj) {
+            return (
+            <Grid key={index}>
+              <Row>
+                <ReactCSSTransitionGroup
+                  transitionName='fade'
+                  transitionAppear={true}
+                  transitionAppearTimeout={3000}
+                  transitionEnter={false}
+                  transitionLeave={false}
+                  key={index}>
+                  <Col xs={12} md={12}>
+                    <h5>{obj.name}</h5>
+                  </Col>
+                  <Col xs={12} md={12}>
+                    <ColorFamily setCurrentFamily={this.props.setCurrentFamily} toggleSidebarOn={this.props.toggleSidebarOn} colorFamily={obj} />
+                  </Col>
+                </ReactCSSTransitionGroup>
+              </Row>
+            </Grid>
+            )
+          }
         }.bind(this))}
      </div>
     );
