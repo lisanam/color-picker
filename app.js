@@ -2,9 +2,9 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
-var db = require('./db.js')
+var db = require('./server/db.js')
 var ColorFamily = db.ColorFamily;
-var controller = require('./controller.js');
+var controller = require('./server/controller.js');
 
 // current color family for chrome ext
 var extUserPalette = null;

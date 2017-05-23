@@ -29,7 +29,7 @@ class App extends React.Component {
       allFamilies: [],
       appClass: 'app-main-full',
       sidebarClass: 'app-sidebar-hidden',
-      createClass: 'create-family-hidden',
+      createClass: false,
       playGame: false,
       familyName: '',
       hiddenUnlocked: false,
@@ -139,11 +139,11 @@ class App extends React.Component {
 
 
   toggleSubmitForm() {
-    if (this.state.createClass === 'create-family-hidden') {
-      this.setState({createClass: 'create-family-show'});
+    if (this.state.createClass === false) {
+      this.setState({createClass: true});
     } else {
       this.setState({
-        createClass: 'create-family-hidden',
+        createClass: false,
         familyName: '',
         palette: {
           color1: {name: 'Cyan', hex: '#2DE1FC', rgb: {a: 1, b: 252, g: 225, r: 45}},
@@ -459,9 +459,9 @@ class App extends React.Component {
           <FilterBar handleEnter={this.handleEnter.bind(this)} playingGame={this.state.playGame} playGame={this.playGame.bind(this)} className="app-nav" handleStateChange={this.handleStateChange} currentFilter={this.state.currentFilter} toggleSubmit={this.toggleSubmitForm} sortByToday={this.sortByToday.bind(this)} sortByWeek={this.sortByWeek.bind(this)} sortByMonth={this.sortByMonth.bind(this)} sortByCopyCount={this.sortByCopyCount.bind(this)}/>
           <div>
             <div className={this.state.appClass}>
-              <div id="0" className={this.state.createClass}>
-              <CreateYourOwn fetchColors={this.fetchColors.bind(this)} palette={this.state.palette} familyName={this.state.familyName} handlePaletteChange={this.handlePaletteChange.bind(this)} handleFormChange={this.handleFormChange.bind(this)}/>
-              </div>
+              <div id="0" className='create-family'>{
+                this.state.createClass ? <CreateYourOwn fetchColors={this.fetchColors.bind(this)} palette={this.state.palette} familyName={this.state.familyName} handlePaletteChange={this.handlePaletteChange.bind(this)} handleFormChange={this.handleFormChange.bind(this)}/> : <div></div>
+              }</div>
               <ColorFamilyView setCurrentFamily={this.setCurrentFamily.bind(this)} colorFamilies={this.state.colorFamilies} toggleSidebarOn={this.toggleSidebarOn}/>
             </div>
             <div className={this.state.sidebarClass}>
