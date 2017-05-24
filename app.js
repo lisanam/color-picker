@@ -89,6 +89,6 @@ app.get('/api/monthly', controller.getMonthly);
 app.get('/api/copycount', controller.getCopyCount);
 app.post('/api/copycount', controller.increaseCount);
 
-app.listen(3000, function () {
+app.listen(8000, function () {
   console.log('Colorize is up and running!')
 });

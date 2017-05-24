@@ -14,9 +14,9 @@ import MatchGame from './MatchGame.js';
 import ColorNameMatchGame from './ColorNameMatchGame.js';
 
 var sortObj = function (obj) {
-  return Object.keys(obj).sort(function(a, b) {
+  return obj ? Object.keys(obj).sort(function(a, b) {
     return obj[b] - obj[a];
-  });
+  }) : null;
 };
 
 class App extends React.Component {
@@ -198,7 +198,7 @@ class App extends React.Component {
       url: '/api/daily',
       success: function (resp) {
         var sortedFamilyId = sortObj(resp);
-
+        console.log(resp)
         that.setState({
           currentFilter: 'Today',
         });

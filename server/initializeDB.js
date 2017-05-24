@@ -40,8 +40,7 @@ var init = function() {
         dailyUpdated: 0,
         date: date,
         data: data
-      })
-      .save();
+      }).save();
     }
   })
 }

@@ -39,9 +39,9 @@ module.exports = {
       if(err){
         throw err;
       } else {
+        var data = result.data;
 
         // Update data
-        var data = result.data;
         if(data.hasOwnProperty(familyId)) {
           data[familyId]++;
         } else {
@@ -49,14 +49,15 @@ module.exports = {
         }
 
         //Update date
-      var date = result.date;
-      if(result.dailyUpdated !== today) {
-        date[today] = {};
-        result.dailyUpdated = today;
-        CopyCount.update({_id: result._id}, {$set: {dailyUpdated: result.dailyUpdated}},{multi: true}, function (err, something) {
-          if(err) {throw err}
-        })
-      }
+        var date = result.date;
+        if(result.dailyUpdated !== today) {
+          date[today] = {};
+          result.dailyUpdated = today;
+          CopyCount.update({_id: result._id}, {$set: {dailyUpdated: result.dailyUpdated}},{multi: true}, function (err, something) {
+            if(err) {throw err}
+          })
+        }
+
         if(date.hasOwnProperty(today) && date[today].hasOwnProperty(familyId)) {
           date[today][familyId]++;
         } else {
@@ -64,7 +65,9 @@ module.exports = {
         }
 
         CopyCount.update({_id: result._id}, {$set: {data: data, date: date}}, {multi: true}, function (err, something) {
-          if(err) {throw err}
+          if(err) {
+            throw err
+          }
         })
       }
     });
@@ -75,8 +78,10 @@ module.exports = {
     CopyCount.findOne({}, function(err, result) {
       if(err){
         throw err;
-      } else {
+      } else if (result) {
         res.json(result.date[today]);
+      } else {
+        res.json(null);
       }
     });
   },
@@ -90,13 +95,14 @@ module.exports = {
       // else if (result.weeklyUpdated === today){
       //   res.send(result.weekly);
       // } 
-      else {
+      else if (result)  {
         var weekly = summery(result.date, today - 7, today)
-        console.log('weekly', weekly)
         CopyCount.update({_id: result._id}, {$set: {weeklyUpdated: today, weekly:weekly}}, function (err, something) {
           if(err) {throw err}
         })
         res.json(result.weekly);
+      } else {
+        res.json(null);
       }
     });
   },
@@ -110,23 +116,26 @@ module.exports = {
       // else if (result.monthlyUpdated === today){
       //   res.send(result.monthly);
       // } 
-      else {
+      else if (result){
         var monthly = summery(result.date)
         CopyCount.update({_id: result._id}, {$set: {monthlyUpdated: today, monthly:monthly}}, function (err, something) {
           if(err) {throw err}
         })
         res.json(result.monthly);
+      } else {
+        res.json(null);
       }
     });
   },
 
   getCopyCount: function(req, res) {
-    console.log('getting CopyCOunt')
     CopyCount.findOne({}, function(err, result) {
       if(err){
         throw err;
-      } else {
+      } else if(result) {
         res.json(result.data);
+      } else {
+        res.json(null);
       }
     });
   }
