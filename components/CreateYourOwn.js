@@ -108,7 +108,7 @@ class CreateYourOwn extends React.Component {
   handleColorAPI(mode) {
     $.ajax({
       method: 'GET',
-      url: '//thecolorapi.com/scheme?hex=' + this.state.activeColor.slice(1) + '&mode=' + mode,
+      url: 'https://thecolorapi.com/scheme?hex=' + this.state.activeColor.slice(1) + '&mode=' + mode,
       dataType: 'jsonp',
       headers: {'Access-Control-Allow-Headers': '*', 'Content-Type':'application/json'},
       success: function(res) {
